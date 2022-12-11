@@ -30,7 +30,7 @@ func soma1(a, b float64) float64 {
 
 func erro(a, b int) (int, error) {
 	if a+b >= 50 {
-		return 0, errors.New("=> A soma é maior que 50 >> ")
+		return 0, errors.New("=> A soma é maior que 50 > ")
 	}
 
 	return a + b, nil
