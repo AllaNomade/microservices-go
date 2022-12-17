@@ -22,7 +22,7 @@ func main() {
 	// fmt.Println(len(a))
 	// fmt.Println(cap(a))
 
-	q := []int{10, 20, 30, 50, 60, 70, 80, 90, 100}
+	q := []int{10, 20, 30, 40, 50, 60, 70, 80, 90}
 	fmt.Printf("len= %d cap= %d %v\n", len(q), cap(q), q)
 
 	//Dominui o slice

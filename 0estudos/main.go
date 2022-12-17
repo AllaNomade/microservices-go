@@ -7,16 +7,19 @@ import (
 
 func main() {
 	exibealgo()
-	valor, err := nada(5, 1)
+
+	valor, err := nada(5, 3)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(valor)
-	nomes := map[string]int{"alan": 1200, "thiago": 1200, "filipe": 3000}
 
+	//MAP
+	nomes := map[string]int{"alan": 1200, "thiago": 1200, "filipe": 3000}
 	fmt.Println(nomes)
 
+	//SLICE PARA PERCORRER
 	for nome, salario := range nomes {
 		fmt.Printf("nome é: %s e seu salário é: %d\n", nome, salario)
 	}
