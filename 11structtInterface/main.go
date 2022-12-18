@@ -15,10 +15,26 @@ type Client struct {
 	locale Adress
 }
 
+type business struct {
+	nome string
+}
+
+type Person interface {
+	desativar()
+}
+
+func (b business) desativar() {
+
+}
+
 func (c Client) desativar() {
 	c.active = false
 
 	fmt.Printf("o cliente %s foi desativado", c.name)
+}
+
+func desativacao(person Person) {
+	person.desativar()
 }
 
 func main() {
@@ -29,7 +45,10 @@ func main() {
 		active: true,
 	}
 
-	fulano.desativar()
-	fulano.active = false
+	minhaEmpresa := business{
+		nome: "algo",
+	}
+
+	desativacao(minhaEmpresa)
 
 }
