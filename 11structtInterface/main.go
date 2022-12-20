@@ -15,26 +15,29 @@ type Client struct {
 	locale Adress
 }
 
-type business struct {
-	nome string
+type Business struct {
+	nome   string
+	active bool
 }
 
 type Person interface {
-	desativar()
+	Desativar() //intaface pode haver métodos, como por ex: Desativar(x int) int
 }
 
-func (b business) desativar() {
+func (b Business) Desativar() {
+	b.active = false
 
+	fmt.Printf("A empresa %s ESTÁ desativada.", b.nome)
 }
 
-func (c Client) desativar() {
+func (c Client) Desativar() {
 	c.active = false
 
 	fmt.Printf("o cliente %s foi desativado", c.name)
 }
 
 func desativacao(person Person) {
-	person.desativar()
+	person.Desativar()
 }
 
 func main() {
@@ -45,10 +48,12 @@ func main() {
 		active: true,
 	}
 
-	minhaEmpresa := business{
-		nome: "algo",
+	HopiOutlet := Business{
+		nome:   "Hopi Outlet",
+		active: true,
 	}
 
-	desativacao(minhaEmpresa)
+	desativacao(HopiOutlet)
+	desativacao(fulano)
 
 }
