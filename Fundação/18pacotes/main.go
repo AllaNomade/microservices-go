@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"golang/matematica"
-
-	"github.com/google/uuid"
+	"gopackage/matematica"
 )
 
 func main() {
@@ -14,5 +12,4 @@ func main() {
 	fmt.Printf("A marca do carro é %s:\n", carro)
 	fmt.Printf("Resultado: %v\n", s)
 	fmt.Println(matematica.A)
-	fmt.Println(uuid.New())
 }
