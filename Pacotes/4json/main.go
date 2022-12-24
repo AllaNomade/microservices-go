@@ -37,4 +37,5 @@ func main() {
 		panic(err)
 	}
 	fmt.Println(contaX.Saldo)
+	fmt.Println(contaX.Numero)
 }

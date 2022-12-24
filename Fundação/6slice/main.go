@@ -25,7 +25,7 @@ func main() {
 	q := []int{10, 20, 30, 40, 50, 60, 70, 80, 90}
 	fmt.Printf("len= %d cap= %d %v\n", len(q), cap(q), q)
 
-	//Dominui o slice
+	//Diminui o slice
 	fmt.Printf("len= %d cap= %d %v\n", len(q[:0]), cap(q[:0]), q[:0])
 
 	// utiliza tudo antes do slice à esquerda e ignora o restante
