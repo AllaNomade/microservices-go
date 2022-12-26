@@ -13,10 +13,9 @@ type ViaCEP struct {
 	Bairro      string `json:"bairro"`
 	Localidade  string `json:"localidade"`
 	Uf          string `json:"uf"`
+	Unidade     string `json:"unidade"`
 	Ibge        string `json:"ibge"`
 	Gia         string `json:"gia"`
-	Ddd         string `json:"ddd"`
-	Siafi       string `json:"siafi"`
 }
 
 func main() {
@@ -35,14 +34,27 @@ func BuscaCepHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	cep, error := BuscaCep(cepParam)
+	if error != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 	//Manipula o Header para retornar no formato JSON
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Hello, world!"))
+	// // result, err := json.Marshal(cep)
+	// // if err != nil {
+	// //   w.WriteHeader(http.StatusInternalServerError)
+	// // 	return
+	// // }
+	// // w.Write(result)
+
+	//NewEncoder transforma em JSON, sendo o Encode fazendo json.Marshal() e o NewEncoder fazendo o w.Write()
+	json.NewEncoder(w).Encode(cep)
 }
 
-func buscaCep(cep string) (*ViaCEP, error) {
-	resp, error := http.Get("https://www.viacep.com.br/ws" + cep + "/json/")
+func BuscaCep(cep string) (*ViaCEP, error) {
+	resp, error := http.Get("https://viacep.com.br/ws/" + cep + "/json/")
 	if error != nil {
 		return nil, error
 	}
