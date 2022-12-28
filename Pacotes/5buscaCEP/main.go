@@ -31,6 +31,7 @@ func main() {
 		res, err := io.ReadAll(req.Body)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Erro ao ler resposta: %v\n", err)
+			fmt.Fprintf(os.Stderr, "Erro ao ler resposta: %v\n", err)
 		}
 		var data ViaCEP
 		err = json.Unmarshal(res, &data)
@@ -43,11 +44,6 @@ func main() {
 		}
 		defer file.Close()
 		_, err = file.WriteString(fmt.Sprintf("CEP: %s, Rua: %s, Bairro: %s, Localidade: %s, UF: %s, DDD: %s", data.Cep, data.Logradouro, data.Bairro, data.Localidade, data.Uf, data.Ddd))
-		fmt.Println("Arquivo criado com sucesso!")
-		fmt.Println("Cidade: ", data.Localidade)
-		fmt.Println("Cep: ", data.Cep)
-		fmt.Println("Logradouro: ", data.Logradouro)
-		fmt.Println("Bairro: ", data.Bairro)
-		fmt.Println("DDD: ", data.Ddd)
+
 	}
 }
