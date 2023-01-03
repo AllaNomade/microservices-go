@@ -28,7 +28,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	//declaramos string na função pois a função somente retornará bytes caso contrário.
+	//declaramos string na função pois a função somente retornaria bytes caso contrário.
 	fmt.Println(string(arquivo))
 
 	arquivo2, err := os.Open("arquivo.txt")
