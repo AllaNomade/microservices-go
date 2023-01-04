@@ -16,16 +16,16 @@ func main() {
 	// //fmt.Println(salario)
 
 	// Em map você escolhe o tipo da chave (string boolean ou int)
-	// // salario1 := map[bool]string{true: "terra-redonda", false: "terra-plana"}
-	// // fmt.Println(salario1)
+	salario1 := map[string]bool{"Terra Redonda": true, "Terra Plana": false}
+	fmt.Println(salario1)
 
 	//percorrer o Maps dos salários
-	for nome, salarios := range salario {
-		fmt.Printf("O salario de %s é %d\n", nome, salarios)
-	}
+	// // for nome, salarios := range salario {
+	// // 	fmt.Printf("O salario de %s é %d\n", nome, salarios)
+	// // }
 
-	for _, salarios := range salario {
-		fmt.Printf("O salario é %d\n", salarios)
-	}
+	// // for _, salarios := range salario {
+	// // 	fmt.Printf("O salario é %d\n", salarios)
+	// // }
 
 }

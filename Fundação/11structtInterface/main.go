@@ -24,6 +24,10 @@ type Person interface {
 	Desativar() //intaface pode haver métodos, como por ex: Desativar(x int) int
 }
 
+func desativacao(person Person) {
+	person.Desativar()
+}
+
 func (b Business) Desativar() {
 	b.active = false
 
@@ -34,10 +38,6 @@ func (c Client) Desativar() {
 	c.active = false
 
 	fmt.Printf("o cliente %s foi desativado", c.name)
-}
-
-func desativacao(person Person) {
-	person.Desativar()
 }
 
 func main() {

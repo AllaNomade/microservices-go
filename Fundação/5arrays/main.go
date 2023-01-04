@@ -7,6 +7,7 @@ type ID int
 var e float64 = 1.2
 var f ID = 1
 
+//caso declare um array, é preciso numerar todos
 func main() {
 	var array [3]int
 	array[0] = 1
