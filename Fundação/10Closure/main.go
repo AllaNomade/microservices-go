@@ -4,15 +4,15 @@ import "fmt"
 
 func main() {
 
-	//Closure
+	//Closure traz uma função dentro de uma função, como na linha 8 e 14
 	total := func() int {
-		return soma(1, 34, 5, 80, 90, 9000) + 2
+		return soma(1, 1, 1, 1, 1, 9000) + 2
 	}()
 
 	fmt.Println(total)
 
 	tot := func() int {
-		return mult(5) + 5
+		return sum(5) + 5
 	}()
 
 	fmt.Println(tot)
@@ -29,7 +29,7 @@ func soma(numeros ...int) int {
 	return tot
 }
 
-func mult(numbers ...int) int {
+func sum(numbers ...int) int {
 	total := 0
 
 	for _, number := range numbers {

@@ -13,12 +13,12 @@ func NewConta() *Conta {
 
 func (c *Conta) Simular(valor int) int {
 	c.saldo += valor
-	fmt.Println(c.saldo)
+	// fmt.Println(c.saldo)
 	return c.saldo
 }
 
 func main() {
 	conta := Conta{saldo: 100}
 	conta.Simular(200)
-	println(conta.saldo)
+	fmt.Println(conta.saldo)
 }

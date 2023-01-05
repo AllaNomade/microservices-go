@@ -4,10 +4,11 @@ import "fmt"
 
 func main() {
 
-	soma(1, 34, 5, 80, 90, 9000)
+	//fmt.println(soma())retorna a soma dos números
+	fmt.Println(soma(1, 4, 7, 8, 14, 77))
 }
 
-//retorna soma como se fosse um spread
+//retorna soma como se fosse um spread, retornando todos os parâmetros
 func soma(numeros ...int) int {
 
 	total := 0
@@ -15,6 +16,7 @@ func soma(numeros ...int) int {
 	for _, numero := range numeros {
 		total += numero
 	}
+	//fmt.println(numeros) retorna o total de numeros em soma, linha 7
 	fmt.Println(numeros)
 
 	return total

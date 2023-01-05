@@ -9,7 +9,7 @@ import (
 func main() {
 
 	//Timeout determina o tempo máximo de retorno http, caso ultrapasse o tempo, vai "estourar" o erro
-	c := http.Client{Timeout: time.Duration(1) * time.Microsecond}
+	c := http.Client{Timeout: time.Duration(1) * time.Second}
 	resp, err := c.Get("http://google.com")
 	if err != nil {
 		panic(err)
