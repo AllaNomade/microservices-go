@@ -9,6 +9,7 @@ import (
 
 func main() {
 
+	//context.background() é o default para instanciar o Context
 	ctx := context.Background()
 	// context.WithTimeout() precisa passar o ctx, (linha 12) e o tempo máximo que a chamada http deve retornar
 	ctx, cancel := context.WithTimeout(ctx, time.Second)

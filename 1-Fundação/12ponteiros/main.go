@@ -3,7 +3,7 @@ package main
 func main() {
 
 	a := 10
-	defer println(&a)
+	println(a)
 
 	var pointer *int = &a
 	*pointer = 20
@@ -12,5 +12,5 @@ func main() {
 	//caso passe println(b), retornará o endereçamento
 	//na memória de a, linha 5, pois está apontando para a memória
 	//como na linha 10.
-	defer println(&b)
+	println(&b)
 }
