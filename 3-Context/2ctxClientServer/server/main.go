@@ -1,51 +1,29 @@
 package main
 
 import (
-	"context"
-	"encoding/json"
-	"io/ioutil"
+	"log"
 	"net/http"
 	"time"
 )
 
-type UsdBRL struct {
-	Code       string `json:"code"`
-	Codein     string `json:"codein"`
-	Name       string `json:"name"`
-	High       string `json:"high"`
-	Low        string `json:"low"`
-	VarBid     string `json:"varBid"`
-	PctChange  string `json:"pctChange"`
-	Bid        string `json:"bid"`
-	Ask        string `json:"ask"`
-	Timestamp  string `json:"timestamp"`
-	CreateDate string `json:"create_date"`
+func main() {
+	http.HandleFunc("/", Handler)
+	http.ListenAndServe(":8080", nil)
 }
 
-func main() {
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
-	req, err := http.NewRequestWithContext(ctx, "GET", "https://economia.awesomeapi.com.br/json/last/USD-BRL", nil)
-	if err != nil {
-		panic(err)
-	}
+func Handler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	log.Println("request iniciada")
+	defer log.Println("request finalizada")
+	select {
+	case <-time.After(5 * time.Second):
+		//imprime no command line: os.stdout
+		log.Println("Request processada com sucesso")
+		//imprime no Browser
+		w.Write([]byte("Request processada com sucesso!"))
+	case <-ctx.Done():
+		//imprime no command line: os.stdout
+		log.Println("Request cancelada pelo cliente")
 
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		panic(err)
 	}
-	defer resp.Body.Close()
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-	println(string(body))
-
-	var c UsdBRL
-	err = json.Unmarshal(body, &c)
-	if err != nil {
-		panic(err)
-	}
-
 }
