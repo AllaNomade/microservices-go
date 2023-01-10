@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/google/uuid"
@@ -32,8 +33,26 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	product.Price = 100.00
+	err = updateProduct(db, product)
+	if err != nil {
+		panic(err)
+	}
+	// p, err := selectOneProduct(db, product.ID)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Printf("product: %v, possui o preço %.2f", p.Name, p.Price)
+	products, err := selectAllProducts(db)
+	if err != nil {
+		panic(err)
+	}
+	for _, p := range products {
+		fmt.Printf("Código: %v, Produto: %v, possui preço: %.2f\n", p.ID, p.Name, p.Price)
+	}
 }
 
+// insere o produto
 func Insert(db *sql.DB, product *Product) error {
 	stmt, err := db.Prepare("insert into products(id, name, price) values(?, ?, ?)")
 	if err != nil {
@@ -45,4 +64,51 @@ func Insert(db *sql.DB, product *Product) error {
 		return err
 	}
 	return nil
+}
+
+// atualiza o produto
+func updateProduct(db *sql.DB, product *Product) error {
+	stmt, err := db.Prepare("update products set name = ?, price = ? where id = ?")
+	if err != nil {
+		panic(err)
+	}
+	defer stmt.Close()
+	_, err = stmt.Exec(product.Name, product.Price, product.ID)
+	if err != nil {
+		panic(err)
+	}
+	return nil
+}
+
+func selectOneProduct(db *sql.DB, id string) (*Product, error) {
+	stmt, err := db.Prepare("select id, name, price from products where id = ?")
+	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
+	var p Product
+	//QueryRow buscando somente uma linha
+	err = stmt.QueryRow(id).Scan(&p.ID, &p.Name, &p.Price)
+	if err != nil {
+		return nil, err
+	}
+	return &p, nil
+}
+
+func selectAllProducts(db *sql.DB) ([]Product, error) {
+	rows, err := db.Query("select id, name, price from products")
+	if err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+	var products []Product
+	for rows.Next() {
+		var p Product
+		err = rows.Scan(&p.ID, &p.Name, &p.Price)
+		if err != nil {
+			panic(err)
+		}
+		products = append(products, p)
+	}
+	return products, nil
 }
