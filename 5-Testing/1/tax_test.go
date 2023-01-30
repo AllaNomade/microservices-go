@@ -58,5 +58,8 @@ func FuzzCalculate(f *testing.F) {
 		if amount > 20000 && result != 20 {
 			t.Errorf("Received %f, but expected 20", result)
 		}
+		if amount == 555 && result != 55 {
+			t.Errorf("Received %f, but expected 55", result)
+		}
 	})
 }
