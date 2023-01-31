@@ -1,0 +1,8 @@
+mode: set
+mocktests/car.go:7.63,10.2 2 1
+mocktests/car.go:12.34,13.20 1 1
+mocktests/car.go:16.2,16.20 1 1
+mocktests/car.go:19.2,19.14 1 0
+mocktests/car.go:13.20,15.3 1 1
+mocktests/car.go:16.20,18.3 1 1
+mocktests/car_mock.go:9.57,12.2 2 1
